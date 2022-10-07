@@ -24,6 +24,10 @@ router.get('/:id', async (req, res) => {
       // be sure to include its associated Product data
       include: [{ model: Product }]
     });
+    if(!oneTag) {
+      res.status(404).json({ message: 'No product with this id.' });
+      return;
+    }
     res.status(200).json(oneTag);
   }
   catch(err) {
